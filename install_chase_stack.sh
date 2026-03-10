@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-echo "Running validation..."
-terraform -chdir=terraform init -backend=false
+set -e
+echo "Starting deployment..."
+terraform -chdir=terraform init
 terraform -chdir=terraform validate
-docker build -f docker/Dockerfile -t chase-web:test .
-echo "Validation complete"
+docker build -f docker/Dockerfile -t chase-web:local .
+echo "Basic deployment validation complete."
